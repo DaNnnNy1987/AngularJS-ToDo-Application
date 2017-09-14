@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>To-Do Application in Angular JS</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="Script/ToDoApp.js"></script>
+	<style >
+	span.done-true {
+		color:gray;
+		font-style: italic;
+		text-decoration: line-through;
+	}
+	ul {
+		list-style: none;
+	}
+	span[contenteditable="true"] {
+		background-color: yellow;
+		padding: 5px;
+
+	}
+	</style>
+</head>
+<body ng-app="mainApp" ng-controller="mainController">
+	<h1 style="text-align:center;">Add A Task</h1>
+		<input type="text" ng-model="task" ng-keyup="searchEnter()"  placeholder="Enter a daily task ";style="display:block; margin:0 auto; padding: 5px; font-size:15px; width:300px;">
+
+	<div>
+		<h1>List of Tasks</h1>
+
+			<ul>
+				<li ng-repeat="ATask in tasks track by $index">
+				Task No.{{$index+1}} --
+					<input type="checkbox" ng-model="ATask.status" ng-model="checktask">
+					<span  contenteditable="false" ng-dblclick="contentEdit(ATask.taskmessage)" ng-model="ATask.taskMessage" ng-keyup="EnterEdit(ATask.taskMessage)" class="done-{{ATask.status}}">
+						
+						 {{ATask.taskMessage}}
+					</span>
+					<button ng-click="delete($index)">Delete</button>
+					
+				</li>
+			</ul>	
+	</div>	
+</body>
+</html>
